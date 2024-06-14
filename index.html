@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Company Survey</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f7;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+   ;
+}
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.background-container {
+    position:relative;
+    min-height: 100vh;
+    overflow: hidden; /* Ensure content inside does not overflow */
+}
+
+.background-image {
+    background-image: url('https://cdn.pixabay.com/photo/2021/11/22/07/50/panel-6816102_960_720.jpg'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    filter: blur(8px); /* Adjust the blur radius as needed */
+}
+
+.content {
+    position: relative;
+    z-index:1; /* Ensure content appears above the blurred background */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: white; /* Text color on top of the background */
+    text-align: center;
+}
+
+.content h1, .content p {
+    margin: 10px;
+}
+
+.content {
+    position: relative;
+    z-index: 2; /* Ensure content appears above the overlay */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+
+.content h1, .content p {
+    margin: 10px;
+    color: rgb(5, 5, 5); /* Ensure text color is explicitly set */
+    text-align: center;
+}
+
+
+.content {
+    position: relative;
+    z-index: 1; /* Ensure content appears above the overlay */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: white; /* Text color on top of the background */
+    text-align: center;
+}
+
+.content h1, .content p {
+    margin: 10px;
+    text-align: center;
+    color: white;
+    z-index: 2;
+}
+
+
+
+        .heading {
+            text-align: center;
+            margin-bottom: 30px;
+            color:#e0e0e0;
+            text-align: center;
+            z-index: 10;
+        }
+        .heading h1 {
+            margin: 0;
+            font-size: 28px;
+            color: white;
+            text-align: center;
+            z-index: 2;
+        }
+        .heading h2 {
+            margin: 10px 0;
+            font-size: 20px;
+            color:white;
+            text-align: center;
+            z-index: 2;
+        }
+        .container {
+            background-color: white;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto 20px auto;
+            position: relative;
+            overflow: hidden;
+    
+        }
+        .curve {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: #4CAF50;
+            clip-path: ellipse(50% 100% at 50% 0%);
+            z-index: -1;
+        }
+        .progress-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            margin: 20px 0;
+            height: 10px;
+            position: relative;
+        }
+        .progress-bar {
+            height: 10px;
+            background-color: #4CAF50;
+            width: 0%;
+            border-radius: 4px;
+        }
+        .question {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .question.active {
+            display: block;
+        }
+        .question h3 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        input {
+            display: block;
+            width: 93%;
+            padding: 15px;
+            background-color: #ffffff;
+            color: rgb(15, 15, 15);
+            border: solid black;
+            border-radius: 8px;
+            
+            margin-top: 10px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .info-section {
+            text-align: center;
+            margin-top: 40px;
+        }
+        .info-card {
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            margin: 20px;
+            text-align: left;
+            display: inline-block;
+            vertical-align: top;
+            width: 100%;
+            max-width: 300px;
+            z-index: 2;
+        }
+        .info-card img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+            z-index: 2;
+        }
+        .info-card h3 {
+            color: #333;
+        }
+        .info-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        .info-button:hover {
+            background-color: #45a049;
+        }
+        @media (min-width: 600px) {
+            .info-section {
+                display: flex;
+                justify-content: space-around;
+            }
+            .info-card {
+                width: 30%;
+            }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    
+        <div class="background-container">
+            <div class="background-image"></div>
+            <div class="content">
+<div class="heading">
+    <h1><strong>Check Your Eligibility For Government Solar Incentives & No-Net-Cost Solar</strong></h1>
+    <br>
+    <h3>Save hundreds on your energy bills by taking 30-seconds!</h3>
+</div>
+
+
+<form class="container" name="submit-to-google-sheet">   
+    <div class="curve"></div>
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    
+    <div class="question active" id="question1">
+        <h3>Do you own the property where the solar system will be installed?</h3>
+        <button onclick="nextQuestion(2)">Yes</button>
+        <button onclick="nextQuestion(2)">No</button>
+    </div>
+    <div class="question" id="question2">
+        <h3>Is your system giving you the benefits you want?</h3>
+        <button onclick="nextQuestion(3)">Not really</button>
+        <button onclick="nextQuestion(3)">Yes</button>
+    </div>
+    <div class="question" id="question3">
+        <h3>Are you looking to replace your system?</h3>
+        <button onclick="nextQuestion(4)">Yes</button>
+        <button onclick="nextQuestion(4)">May be</button>
+        <button onclick="nextQuestion(4)">No</button>
+    </div>
+    <div class="question" id="question4">
+        <h3>How high is your <strong>quarterly electricity bill?</strong></h3>
+        <button onclick="nextQuestion(5)">$250-$750</button>
+        <button onclick="nextQuestion(5)">$750-$899</button>
+        <button onclick="nextQuestion(5)">$900+</button>
+    </div>
+    <div class="question" id="question5">
+        <h3>What's the adress of your prperty?</h3>
+        <input type="text"  id="address" name="address" placeholder="adress">
+        <button onclick="nextQuestion(6)">Submit</button>
+    </div>
+    <div class="question" id="question6">
+        <h3>Whats your first name?</h3>
+        <input type="text"  id="firstname" name="firstname" placeholder="firstname">
+        <button onclick="nextQuestion(7)">Submit</button>
+    </div>
+    <div class="question" id="question7">
+        <h3>Whats your last name?</h3>
+        <input type="text"  id="lastname" name="lastname" placeholder="lastname">
+        <button onclick="nextQuestion(8)">Submit</button>
+    </div>
+    <div class="question" id="question8">
+        <h3>Whats your email</h3>
+        <h5 style="color: black;">Enter your email to find out whether you qualify for the maximum Federal Govt Solar Rebate worth up to $7,000.</h5>
+        <input type="text"  id="email" name="email" placeholder="email">
+        <button onclick="nextQuestion(9)">Submit</button>
+    </div>
+    <div class="question" id="question9">
+        <h3>Last step!</h3>
+        <h5 style="color: black;">Whats your phone no.</h5>
+        <input type="text" id="phoneno" name="phoneno" placeholder="phone no">
+        <button onclick="finishSurvey() ">Submit</button>
+        
+    </div>
+    <div class="question" id="thankyou">
+        <h3>Thank you for completing the survey! Our team will contact you shortly.</h3>
+    </div>
+</form>
+</div>
+
+<div class="info-section">
+    <div class="info-card">
+        <img src="https://img.icons8.com/ios-filled/50/4CAF50/guarantee.png" alt="Guarantee Icon">
+        <h3>Guaranteed To Save Money</h3>
+        <p style="color: black;">It is universally acknowledged that having your own solar panels in Australia will make your power bills cheaper. With the Federal Government Solar Rebates, <strong>you can now get solar panels installed that are paid from the savings in your electricity bills.</strong></p>
+    </div>
+    <div class="info-card">
+        <img src="https://img.icons8.com/?size=100&id=9037&format=png&color=40C057" alt="Renewable Icon">
+        <h3>100+ Renewable Partners</h3>
+        <p style="color: black;" >Having worked with over 2,000 installer providers in Australia, we use only market-leading, tier 1 solar installers. We will help you avoid the rogue solar companies. <strong>We have helped 20,000+ Aussies make the switch to solar.</strong></p>
+    </div>
+    <div class="info-card">
+        <img src="https://img.icons8.com/?size=100&id=McCC7Uhnh8lo&format=png&color=40C057" alt="Increase Icon">
+        <h3>Add Value To Your Home</h3>
+        <p style="color: black;">Based on the 30-second quiz, we will help you choose the right panels, batteries, and inverters to go with for your unique situation. <strong>Adding solar to your home can increase the value of your property by up to 4%.</strong></p>
+    </div>
+</div>
+
+<div style="text-align: center; margin-top: 20px; z-index: 2;">
+    <button class="info-button">Check if your home qualifies</button>
+</div>
+            </div>
+        </div>
+
+<script>
+    let progress = 0;
+
+    function nextQuestion(questionNumber) {
+        progress += 12;
+        updateProgressBar();
+        
+        var current = document.querySelector('.question.active');
+        current.classList.remove('active');
+        var next = document.getElementById('question' + questionNumber);
+        next.classList.add('active');
+    }
+
+    function finishSurvey() {
+        progress += 12;
+        updateProgressBar();
+        
+        var current = document.querySelector('.question.active');
+        current.classList.remove('active');
+        var thankyou = document.getElementById('thankyou');
+        thankyou.classList.add('active');
+    }
+
+    function updateProgressBar() {
+        var progressBar = document.getElementById('progressBar');
+        progressBar.style.width = progress + '%';
+    }
+  
+
+  const scriptURL = '<https://script.google.com/macros/s/AKfycbw_yJ4YmDFltUaVygqBg7T_1w2xJq-g9znf2-wjvIP3AvKFT2OSUcIhEgOvl6_F3TUzWA/exec>'
+  const form = document.forms['submit-to-google-sheet']
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => console.log('Success!', response))
+      .catch(error => console.error('Error!', error.message))
+  })
+
+</script>
+
+
+</body>
+</html>
+
+
