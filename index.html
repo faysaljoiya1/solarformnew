@@ -257,7 +257,7 @@ body, html {
 </div>
 
 
-<form class="container" name="submit-to-google-sheet">   
+<form method="post" action="" class="container" name="submit-to-google-sheet">   
     <div class="curve"></div>
     <div class="progress-container">
         <div class="progress-bar" id="progressBar"></div>
@@ -372,7 +372,7 @@ body, html {
     }
   
 
-  const scriptURL = '<https://script.google.com/macros/s/AKfycbw_yJ4YmDFltUaVygqBg7T_1w2xJq-g9znf2-wjvIP3AvKFT2OSUcIhEgOvl6_F3TUzWA/exec>'
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbw_yJ4YmDFltUaVygqBg7T_1w2xJq-g9znf2-wjvIP3AvKFT2OSUcIhEgOvl6_F3TUzWA/exec'
   const form = document.forms['submit-to-google-sheet']
 
   form.addEventListener('submit', e => {
